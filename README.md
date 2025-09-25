@@ -1,4 +1,5 @@
 # Plagiarism-Detection-Project
+## Collaborators should create a new branch and make pull requests in order to maintain the data privacy and security
 *This is a mini project based on **DSA (BASIC)** which consists of the plagiarism detection tool and displays the results of the plagiarism*
 <u><b>Main Thing About the Project </b> </u>
 <p>First we need to create a database which consists of the information about the students</p>
