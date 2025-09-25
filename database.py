@@ -103,7 +103,7 @@ def main():
     #THesee are only the pseudo test cases you are allowed to change these test cases as the code progresses
     print(f"Please Submit those Assignments before the deadline")
     #first we will create a database which consists of the students and then ask the students to enter their id and password
-    Admin1 = Admin("Vijay@112007")
+    Admin1 = Admin(#Enter the password here)
     Admin1.seeDatabases()
     Admin1.createDatabase("PlagiarismStudents")
     Admin1.seeDatabases()
