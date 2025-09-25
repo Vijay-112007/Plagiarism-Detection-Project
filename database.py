@@ -4,10 +4,13 @@ import random
 import os
 import math
 import time
-#first we need to give time to students to submit those assignments
-class Students:
-    #Please see the main(function before working with the code)
-    pass
+def seedGenerate(student_id,password):
+    seedValue = str(student_id) + str(password)
+    return seedValue
+def keyGenerate(seedValue):
+    random.seed(seedValue)
+    key = random.randint(00000,99999)
+    return key
 class Admin:
     #First we need to connect to mysql server
     def __init__(self,password):
@@ -46,7 +49,7 @@ class Admin:
     #Here Admin can create a table for the students
     def createTable(self,table_name):
         print(f"---Creating a Table with Name {table_name}---")
-        self.query = f"create table if not exists {table_name} (student_id int primary key,student_name varchar(60) not null,student_branch varchar(40) not null,student_filename varchar(50),student_marks double,student_key varchar(50) unique not null)"
+        self.query = f"create table if not exists {table_name} (student_id int primary key,student_name varchar(60) not null,student_branch varchar(40) not null,student_filename varchar(50),student_marks double,student_seed varchar(50) unique not null)"
         self.cursorObject.execute(self.query)
         print(f"Table {table_name} was created Successfully")
         self.dataBase.commit()
@@ -63,7 +66,7 @@ class Admin:
             print(x)
         print("-------------------------------------------------")
         print(f"----Adding the Values----")
-        self.query = f"insert into {table_name} (student_id,student_name,student_branch,student_filename,student_marks,student_key) values(%s,%s,%s,%s,%s,%s)"
+        self.query = f"insert into {table_name} (student_id,student_name,student_branch,student_filename,student_marks,student_seed) values(%s,%s,%s,%s,%s,%s)"
         self.cursorObject.executemany(self.query,values)
         self.dataBase.commit()
         print("---Insertion Successfull---")
@@ -99,6 +102,63 @@ class Admin:
         print(f"Successfully Disconnected from the Database")
         print("-------------------------------------------------")
 #Now we will create a test case as manupulating with the database
+#first we need to give time to students to submit those assignments student is the extension of the Admin class
+class Students(Admin):
+    #Now we need to work in the student point of view
+    """
+    first we will ask the student for this id and password then we will perform authentication
+    """
+    def __init__(self,student_id,password):
+        self.student_id = student_id
+        self.password = password
+        self.authentication = False
+    def authentication_system(self,database_connection):
+        #Now we will perform the authentication which is like checking the key and student_id from the database
+        #First we need to connect to the database serve
+        self.database_connection = database_connection
+        #we need to get the key from the database for the comparison
+        query = "select student_seed from studentsAssignments where student_id = %s"
+        value = (self.student_id,)
+        self.cursorb = self.database_connection.cursor()
+        self.cursorb.execute(query,value)
+        self.seed1 = seedGenerate(self.student_id,self.password)
+        self.seed2 = self.cursorb.fetchone()
+        if self.seed2 and keyGenerate(self.seed1) == keyGenerate(self.seed2[0]):
+            self.authentication = True
+        else:
+            self.authentication = False
+    #now after authentication the student can submit the files
+    def submitFiles(self,file_path):
+        #now we need to do two things first we need to store the files with content in the admin and then store the name of the file in the database
+        if not self.authentication:
+            print("Authentication is Required.Please Login first")
+            return
+        submission_directory = os.path.join(os.getcwd(),"submissions")
+        if not os.path.exists(submission_directory):
+            os.makedirs(submission_directory)
+        #Now copy the file content in a new file which is createed in the directory
+        file_name = os.path.basename(file_path)
+        destination_path = os.path.join(submission_directory,file_name)
+        try:
+            with open(file_path,'rb') as fd:
+                content = fd.read()
+            with open(destination_path,'wb') as fd:
+                fd.write(content)
+            print(f"File {file_name} is succesfully submitted")
+        except Exception as e:
+            print(f"Failed to submit the file: {e}")
+            return
+        #now update the database with the filename
+        try:
+            query = "UPDATE studentsAssignments SET student_filename = %s WHERE student_id = %s"
+            values = (file_name, self.student_id)
+            self.cursorb.execute(query, values)
+            self.database_connection.commit()
+            print("Database updated with submitted filename.")
+        except Exception as e:
+            print(f"Failed to update database: {e}")
+            return
+
 def main():
     #THesee are only the pseudo test cases you are allowed to change these test cases as the code progresses
     print(f"Please Submit those Assignments before the deadline")
