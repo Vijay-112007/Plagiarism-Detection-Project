@@ -74,9 +74,19 @@ def boyer_moore_match_count(document,snippet):
     return found
 
 
+def rabin_karp_match_count(document,snippet,prime_val=101):
+    d=256
+    m=len(snippet)
+    n=len(document)
+    if m>n:
+        return 0
+    h=pow(d,m-1) % prime_val
+
+
     
-                                        
-            
+
+
+    
 
 
 
