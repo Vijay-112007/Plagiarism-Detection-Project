@@ -15,10 +15,12 @@ TABLE_NAME= "preprocessed_submissions"
 def kmp_match_count(document,snippet):
     prefix=[0]*len(snippet)
     build_prefix_table(snippet,prefix)
-    i=j=total=0
+    i=0
+    j=0
+    total=0
 
    while i<len(document):
-       if snippet[j]==document[i]
+       if snippet[j]==document[i]:
        i=i+1
        j=j+1
 
@@ -34,3 +36,20 @@ def kmp_match_count(document,snippet):
 
    
     
+def build_prefix_table(pattern,prefix):
+    index=1
+    length=0
+    while index<len(pattern):
+        if pattern[index]==pattern[length]:
+            length= length + 1
+            prefix[index] = length
+            index = index + 1
+        else:
+            if length!=0:
+                length = prefix[length - 1]
+            else:
+                prefix[index]=0
+                index = index + 1
+        
+            
+         
