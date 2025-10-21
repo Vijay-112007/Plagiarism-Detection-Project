@@ -67,7 +67,7 @@ def boyer_moore_match_count(document, snippet):
     found = 0
 
     while shift <= n - m:
-        j = m - 1  
+        j = m - 1
 
         while j >= 0 and snippet[j] == document[shift + j]:
             j -= 1
@@ -82,10 +82,6 @@ def boyer_moore_match_count(document, snippet):
             shift += max(1, j - bad_char_table[ord(document[shift + j])])
 
     return found
-
-
-
-
 def rabin_karp_match_count(document,snippet,prime_val=101):
     d=256
     m=len(snippet)
