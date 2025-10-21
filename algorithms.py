@@ -22,7 +22,7 @@ def kmp_match_count(document,snippet):
     total=0
 
    while i<len(document):
-       if snippet[j]==document[i]:
+    if snippet[j]==document[i]:
        i=i+1
        j=j+1
 
