@@ -110,6 +110,7 @@ class Admin:
         self.dataBase.close()
         print(f"Successfully Disconnected from the Database")
         print("-------------------------------------------------")
+
 #Now we will create a test case as manupulating with the database
 #first we need to give time to students to submit those assignments student is the extension of the Admin class
 class Students(Admin):
@@ -168,7 +169,7 @@ class Students(Admin):
             print(f"Failed to update database: {e}")
             return
 
-# ---------- PREPROCESSOR CLASS (SECOND CODE INTEGRATED) ----------
+# ---------- PREPROCESSOR CLASS (USING ADMIN'S METHODS) ----------
 class Preprocessor(Admin):
     """
     This class handles the preprocessing of student submissions:
@@ -204,20 +205,12 @@ class Preprocessor(Admin):
     def preprocess_files(self,source_table="studentsAssignments"):
         print("Starting preprocessing of student submissions...")
 
-        # Ensure preprocessing table exists
-        create_stmt = """
-        CREATE TABLE IF NOT EXISTS preprocessed_submissions (
-            student_id INT PRIMARY KEY,
-            clean_text TEXT,
-            word_freq_json LONGTEXT
-        )
-        """
-        self.cursorObject.execute(create_stmt)
-        self.dataBase.commit()
+        # Ensure preprocessing table exists using Admin's createTable method
+        self.createTable("preprocessed_submissions")
 
-        # Fetch student rows from source table
-        q = f"SELECT student_id, student_filename FROM {source_table}"
-        self.cursorObject.execute(q)
+        # Fetch student rows from source table using Admin's approach
+        self.query = f"SELECT student_id, student_filename FROM {source_table}"
+        self.cursorObject.execute(self.query)
         rows = self.cursorObject.fetchall()
 
         if not rows:
@@ -244,16 +237,23 @@ class Preprocessor(Admin):
             freq = self.word_freq(tokens)
             freq_json = self.freq_to_json(freq)
 
-            # Insert or update the preprocessing table
-            upsert = """
-            INSERT INTO preprocessed_submissions (student_id, clean_text, word_freq_json)
-            VALUES (%s,%s,%s)
-            ON DUPLICATE KEY UPDATE
-              clean_text=VALUES(clean_text),
-              word_freq_json=VALUES(word_freq_json)
-            """
-            self.cursorObject.execute(upsert,(sid,cleaned,freq_json))
-            self.dataBase.commit()
+            # Insert or update the preprocessing table using Admin's approach
+            # First check if record exists
+            self.query = f"SELECT student_id FROM preprocessed_submissions WHERE student_id = {sid}"
+            self.cursorObject.execute(self.query)
+            existing_record = self.cursorObject.fetchone()
+            
+            if existing_record:
+                # Update existing record using Admin's updateValues method
+                self.updateValues("clean_text", "student_id", "preprocessed_submissions", cleaned, sid)
+                self.updateValues("word_freq_json", "student_id", "preprocessed_submissions", freq_json, sid)
+            else:
+                # Insert new record using Admin's addValues approach
+                values = [(sid, cleaned, freq_json)]
+                self.query = "INSERT INTO preprocessed_submissions (student_id, clean_text, word_freq_json) VALUES (%s, %s, %s)"
+                self.cursorObject.execute(self.query, (sid, cleaned, freq_json))
+                self.dataBase.commit()
+            
             print(f"[ok] ID={sid} processed | tokens={len(tokens)} | unique={len(freq)}")
 
         print("Preprocessing completed.")
@@ -305,9 +305,6 @@ def main():
     Admin1.closeConnection()
     Prep.closeConnection()
 
-
-if __name__ == "__main__":
-    main()
 
 if __name__ == "__main__":
     main()
