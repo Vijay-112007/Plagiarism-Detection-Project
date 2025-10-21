@@ -31,5 +31,56 @@
 <li>First we need to create a database to store the information about the students</li>
 <li>The student file should be starting with his name (optional) where we can create a seed and store it in dbms for easy access which can be like candidate key</li>
 <li>After all the submissions we will perform the test</li>
-<li>Like the thing above mentioned we will perform the test</li>
+
+<li>hello</li>
+<li>Like the thing mentioned above we will perform the test</li>
 </ol>
+
+PHASE 2: ALGORITHMS TO DETECT PLAGIARISM IN PYTHON 
+
+###  ALGORITHMS USED 
+
+This Program integrates and uses three classical algorithms from the world of Data Structures and Algorithms(DSA)
+
+#### Knuth–Morris–Pratt (KMP)
+- USE Prefix Table to skip repeated comparisons
+- DETECT matching substrings with linear time complexity O(n)
+
+####  Boyer–Moore
+- Works backwards
+- Uses the PATTERN of bad character and good suffix 
+- Super fast for large texts
+  
+
+#### Rabin–Karp
+- Uses the famous rolling hash technique to find substring matches based on hash values.  
+- Allows quick detection of identical sequences across documents.
+
+Each of the algorithms returns the number of substrings, and then we find the average of those three to get the final result
+
+
+### DATA STRUCTURES USED 
+
+- PREFIX TABLE (KMP) : We use **list** to store the prefix or suffix to overlap lengths for efficient pattern skipping
+- Boyer Moore : We use **Array** to store the last occurrence index of the characters
+- Rabin Karp: **Hash values** are used as we use rolling hash to make it efficient for large data sets we can use larger hash values 
+- Records from SQL : **Dictionary** is used as it allows easy access of records and fields 
+- Pairwise Comparison: **List of Tuples** are used to store unique records 
+
+
+
+
+
+### WORKFLOW 
+
+1. **Step 1:** Connect to the existing database **`PlagiarismStudents`**.  
+2. **Step 2:** Fetch all records from the **`preprocessed_submissions`** table.  
+3. **Step 3:** Generate all possible unique pairs of students using `itertools.combinations`.  
+4. **Step 4:** For each pair:  
+   - Extract their `clean_text`. 
+   - Compute similarity using **KMP**, **Boyer–Moore**, and **Rabin–Karp**.  
+   - Average the results.  
+5. **Step 5:** Print results and optionally save them back to SQL
+
+
+
