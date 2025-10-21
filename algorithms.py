@@ -27,8 +27,8 @@ def kmp_match_count(document,snippet):
             j=j+1
 
         if j==len(snippet):
-        total = total + 1
-        j=prefix[j-1]
+            total = total + 1
+            j=prefix[j-1]
         elif i < len(document) and snippet[j] != document[i]:
             if j != 0:
                 j = prefix[j - 1]
@@ -64,19 +64,22 @@ def boyer_moore_match_count(document,snippet):
 
     shift=0
     found=0
-    while shift <= n-m:
-        j = m-1
-        while j>=0 and snippet[j]== document[shift + j]:
-            j= j -1
-        if j<0:
-            found+=1
-            if shift + m < n:        # 🔹 Explicit check instead of ternary
-                shift += m - bad_char_table[ord(document[shift + m])]
-            else:
-                shift += 1
+    while shift <= n - m:
+    j = m - 1
+    while j >= 0 and snippet[j] == document[shift + j]:
+        j -= 1
+
+    if j < 0:
+        found += 1
+        if shift + m < n:      
+            shift += m - bad_char_table[ord(document[shift + m])]
         else:
-            shift += max(1, j - bad_char_table[ord(document[shift + j])])
-    return found
+            shift += 1
+    else:
+        shift += max(1, j - bad_char_table[ord(document[shift + j])])
+
+return found
+
 
 
 def rabin_karp_match_count(document,snippet,prime_val=101):
@@ -100,7 +103,7 @@ def rabin_karp_match_count(document,snippet,prime_val=101):
             hash_doc = (d * (hash_doc - ord(document[i]) * h) + ord(document[i + m])) % prime_val
             
             if hash_doc <0: 
-              hash_doc += prime_val 
+                hash_doc += prime_val 
     return occurrences
 
     
