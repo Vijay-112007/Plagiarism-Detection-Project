@@ -2,7 +2,7 @@ import mysql.connector
 import re
 import itertools
 from main1 import Preprocessor
-from collections import counter
+from collections import Counter
 
 DB_SETTINGS = {
     "host": "localhost",
@@ -21,19 +21,19 @@ def kmp_match_count(document,snippet):
     j=0
     total=0
 
-   while i<len(document):
-       if snippet[j]==document[i]:
-       i=i+1
-       j=j+1
+    while i<len(document):
+        if snippet[j]==document[i]:
+            i=i+1
+            j=j+1
 
-   if j==len(snippet)
-      total = total + 1
-      j=prefix[j-1]
-   elif i < len(document) and snippet[j] != document[i]:
-            if j != 0:
-                j = prefix[j - 1]
-            else:
-                i += 1
+    if j==len(snippet):
+        total = total + 1
+        j=prefix[j-1]
+    elif i < len(document) and snippet[j] != document[i]:
+        if j != 0:
+            j = prefix[j - 1]
+        else:
+            i += 1
     return total
 
    
@@ -69,10 +69,13 @@ def boyer_moore_match_count(document,snippet):
         while j>=0 and snippet[j]== document[shift + j]:
             j= j -1
         if j<0:
-            found+=1
-            shift += (m - bad_char_table[ord(document[shift + m])] if shift + m < n else 1)
+                found+=1
+                if shift + m < n:        # 🔹 Explicit check instead of ternary
+                shift += m - bad_char_table[ord(document[shift + m])]
+            else:
+                shift += 1
         else:
-            shift += max(1, j - bad_char_table[ord(document[shift + j])])
+                shift += max(1, j - bad_char_table[ord(document[shift + j])])
     return found
 
 
@@ -93,10 +96,10 @@ def rabin_karp_match_count(document,snippet,prime_val=101):
     for i in range(n-m+1):
         if hash_snippet == hash_doc and document[i:i+m]==snippet:
             occurrences +=1
-            if i < n - m:
+        if i < n - m:
             hash_doc = (d * (hash_doc - ord(document[i]) * h) + ord(document[i + m])) % prime_val
             
-             if hash_doc <0: 
+            if hash_doc <0: 
               hash_doc += prime_val 
     return occurrences
 
