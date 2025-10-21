@@ -59,7 +59,6 @@ def boyer_moore_match_count(document, snippet):
     if m == 0:
         return 0
 
-
     bad_char_table = [-1] * 256
     for i in range(m):
         bad_char_table[ord(snippet[i])] = i
@@ -81,7 +80,6 @@ def boyer_moore_match_count(document, snippet):
                 shift += 1
         else:
             shift += max(1, j - bad_char_table[ord(document[shift + j])])
-
 
     return found
 
