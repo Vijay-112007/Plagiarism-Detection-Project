@@ -1,11 +1,12 @@
 import mysql.connector 
 import re
 import itertools
+from database_preprocessing import Preprocessor
 
-DB_CONFIG = {
+DB_SETTINGS = {
     "host": "localhost",
     "user": "root",           
-    "password": "PASSWORD",   
+    "password": "Vijay@112007",   
     "database": "PlagiarismStudents"
 }
 
@@ -81,7 +82,22 @@ def rabin_karp_match_count(document,snippet,prime_val=101):
     if m>n:
         return 0
     h=pow(d,m-1) % prime_val
-
+    hash_snippet=0
+    hash_doc=0
+    occurrences=0
+    
+    for i in range(m):
+        hash_snippet=(d*hash_snippet + ord(snippet[i])) % prime_val 
+        hash_doc=(d*hash_doc + ord(document[i])) % prime_val
+    for i in range(n-m+1):
+        if hash_snippet == hash_doc and document[i:i+m]==snippet:
+            occurrences +=1
+            if i < n - m:
+            hash_doc = (d * (hash_doc - ord(document[i]) * h) + ord(document[i + m])) % prime_val
+            
+             if hash_doc <0: 
+              hash_doc += prime_val 
+    return occurrences
 
     
 
