@@ -111,22 +111,6 @@ def rabin_karp_match_count(document,snippet,prime_val=101):
             if hash_doc <0: 
                 hash_doc += prime_val 
     return occurrences
-
-
-
-
-import mysql.connector
-import itertools
-
-DB_SETTINGS = {
-    "host": "localhost",
-    "user": "root",
-    "password": "Vijay@112007",
-    "database": "PlagiarismStudents"
-}
-
-TABLE_NAME = "preprocessed_submissions"
-
 def build_prefix_table(pattern, prefix):
     index = 1
     length = 0
