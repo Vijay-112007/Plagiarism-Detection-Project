@@ -2,6 +2,7 @@ import mysql.connector
 import re
 import itertools
 from database_preprocessing import Preprocessor
+from collections import counter
 
 DB_SETTINGS = {
     "host": "localhost",
