@@ -83,7 +83,7 @@ def boyer_moore_match_count(document, snippet):
             shift += max(1, j - bad_char_table[ord(document[shift + j])])
 
 
-return found
+    return found
 
 
 
