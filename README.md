@@ -80,7 +80,7 @@ Each of the algorithms returns the number of substrings, and then we find the av
    - Extract their `clean_text`. 
    - Compute similarity using **KMP**, **Boyer–Moore**, and **Rabin–Karp**.  
    - Average the results.  
-5. **Step 5:** Print results and optionally save them back to SQL or as a CSV report.
+5. **Step 5:** Print results and optionally save them back to SQL
 
 
 
