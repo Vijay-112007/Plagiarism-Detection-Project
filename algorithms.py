@@ -26,14 +26,14 @@ def kmp_match_count(document,snippet):
             i=i+1
             j=j+1
 
-    if j==len(snippet):
+        if j==len(snippet):
         total = total + 1
         j=prefix[j-1]
-    elif i < len(document) and snippet[j] != document[i]:
-        if j != 0:
-            j = prefix[j - 1]
-        else:
-            i += 1
+        elif i < len(document) and snippet[j] != document[i]:
+            if j != 0:
+                j = prefix[j - 1]
+            else:
+                i += 1
     return total
 
    
@@ -69,13 +69,13 @@ def boyer_moore_match_count(document,snippet):
         while j>=0 and snippet[j]== document[shift + j]:
             j= j -1
         if j<0:
-                found+=1
-                if shift + m < n:        # 🔹 Explicit check instead of ternary
+            found+=1
+            if shift + m < n:        # 🔹 Explicit check instead of ternary
                 shift += m - bad_char_table[ord(document[shift + m])]
             else:
                 shift += 1
         else:
-                shift += max(1, j - bad_char_table[ord(document[shift + j])])
+            shift += max(1, j - bad_char_table[ord(document[shift + j])])
     return found
 
 
