@@ -15,6 +15,8 @@ TABLE_NAME= "preprocessed_submissions"
 
 
 def kmp_match_count(document,snippet):
+    if not snippet or not document:  # handle empty strings
+        return 0
     prefix=[0]*len(snippet)
     build_prefix_table(snippet,prefix)
     i=0
@@ -54,6 +56,8 @@ def build_prefix_table(pattern,prefix):
                 index = index + 1
 
 def boyer_moore_match_count(document, snippet):
+    if not snippet or not document:  # handle empty strings
+        return 0
     m = len(snippet)
     n = len(document)
     if m == 0:
@@ -83,6 +87,8 @@ def boyer_moore_match_count(document, snippet):
 
     return found
 def rabin_karp_match_count(document,snippet,prime_val=101):
+    if not snippet or not document:  # handle empty strings
+        return 0
     d=256
     m=len(snippet)
     n=len(document)
