@@ -53,32 +53,38 @@ def build_prefix_table(pattern,prefix):
                 prefix[index]=0
                 index = index + 1
 
-def boyer_moore_match_count(document,snippet):
-    m=len(snippet)
-    n=len(document)
-    if m == 0: 
+def boyer_moore_match_count(document, snippet):
+    m = len(snippet)
+    n = len(document)
+    if m == 0:
         return 0
-    bad_char_table= [-1]*256
+
+
+    bad_char_table = [-1] * 256
     for i in range(m):
-        bad_char_table[ord(snippet[i])]=i
+        bad_char_table[ord(snippet[i])] = i
 
-    shift=0
-    found=0
+    shift = 0
+    found = 0
+
     while shift <= n - m:
-    j = m - 1
-    while j >= 0 and snippet[j] == document[shift + j]:
-        j -= 1
+        j = m - 1  
 
-    if j < 0:
-        found += 1
-        if shift + m < n:      
-            shift += m - bad_char_table[ord(document[shift + m])]
+        while j >= 0 and snippet[j] == document[shift + j]:
+            j -= 1
+
+        if j < 0:
+            found += 1
+            if shift + m < n:
+                shift += m - bad_char_table[ord(document[shift + m])]
+            else:
+                shift += 1
         else:
-            shift += 1
-    else:
-        shift += max(1, j - bad_char_table[ord(document[shift + j])])
+            shift += max(1, j - bad_char_table[ord(document[shift + j])])
 
-return found
+
+    return found
+
 
 
 
