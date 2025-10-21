@@ -2,7 +2,7 @@ import mysql.connector
 import re
 import itertools
 from main1 import Preprocessor
-from collections import counter
+from collections import Counter
 
 DB_SETTINGS = {
     "host": "localhost",
@@ -15,21 +15,23 @@ TABLE_NAME= "preprocessed_submissions"
 
 
 def kmp_match_count(document,snippet):
+    if not snippet or not document:  # handle empty strings
+        return 0
     prefix=[0]*len(snippet)
     build_prefix_table(snippet,prefix)
     i=0
     j=0
     total=0
 
-   while i<len(document):
-    if snippet[j]==document[i]:
-       i=i+1
-       j=j+1
+    while i<len(document):
+        if snippet[j]==document[i]:
+            i=i+1
+            j=j+1
 
-   if j==len(snippet)
-      total = total + 1
-      j=prefix[j-1]
-   elif i < len(document) and snippet[j] != document[i]:
+        if j==len(snippet):
+            total = total + 1
+            j=prefix[j-1]
+        elif i < len(document) and snippet[j] != document[i]:
             if j != 0:
                 j = prefix[j - 1]
             else:
@@ -53,30 +55,40 @@ def build_prefix_table(pattern,prefix):
                 prefix[index]=0
                 index = index + 1
 
-def boyer_moore_match_count(document,snippet):
-    m=len(snippet)
-    n=len(document)
-    if m == 0: 
+def boyer_moore_match_count(document, snippet):
+    if not snippet or not document:  # handle empty strings
         return 0
-    bad_char_table= [-1]*256
-    for i in range(m):
-        bad_char_table[ord(snippet[i])]=i
+    m = len(snippet)
+    n = len(document)
+    if m == 0:
+        return 0
 
-    shift=0
-    found=0
-    while shift <= n-m:
-        j = m-1
-        while j>=0 and snippet[j]== document[shift + j]:
-            j= j -1
-        if j<0:
-            found+=1
-            shift += (m - bad_char_table[ord(document[shift + m])] if shift + m < n else 1)
+    bad_char_table = [-1] * 256
+    for i in range(m):
+        bad_char_table[ord(snippet[i])] = i
+
+    shift = 0
+    found = 0
+
+    while shift <= n - m:
+        j = m - 1
+
+        while j >= 0 and snippet[j] == document[shift + j]:
+            j -= 1
+
+        if j < 0:
+            found += 1
+            if shift + m < n:
+                shift += m - bad_char_table[ord(document[shift + m])]
+            else:
+                shift += 1
         else:
             shift += max(1, j - bad_char_table[ord(document[shift + j])])
+
     return found
-
-
 def rabin_karp_match_count(document,snippet,prime_val=101):
+    if not snippet or not document:  # handle empty strings
+        return 0
     d=256
     m=len(snippet)
     n=len(document)
@@ -93,11 +105,11 @@ def rabin_karp_match_count(document,snippet,prime_val=101):
     for i in range(n-m+1):
         if hash_snippet == hash_doc and document[i:i+m]==snippet:
             occurrences +=1
-            if i < n - m:
+        if i < n - m:
             hash_doc = (d * (hash_doc - ord(document[i]) * h) + ord(document[i + m])) % prime_val
             
-             if hash_doc <0: 
-              hash_doc += prime_val 
+            if hash_doc <0: 
+                hash_doc += prime_val 
     return occurrences
 
     
