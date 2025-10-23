@@ -86,23 +86,58 @@ Each of the algorithms returns the number of substrings, and then we find the av
 1. GOWTHAN KUMAR C
    
 <ol>
-<li><img width="1915" height="892" alt="Screenshot 2025-10-23 212855" src="https://github.com/user-attachments/assets/19b48547-7a43-44ad-bf75-d63bb0392df4" /></li>
+<li>
+  <img width="1915" height="892" alt="Screenshot 2025-10-23 212855" src="https://github.com/user-attachments/assets/19b48547-7a43-44ad-bf75-d63bb0392df4" />
+</li>
 
-<li><img width="1907" height="895" alt="Screenshot 2025-10-23 212917" src="https://github.com/user-attachments/assets/337c0d7c-f44b-4446-93be-d05b03c0b1ed" /></li>
+<li>
+  <img width="1907" height="895" alt="Screenshot 2025-10-23 212917" src="https://github.com/user-attachments/assets/337c0d7c-f44b-4446-93be-d05b03c0b1ed" />
+</li>
 
-<li><img width="1902" height="808" alt="Screenshot 2025-10-23 212928" src="https://github.com/user-attachments/assets/a9b2c0ba-ad0a-47ca-9ca4-7a2f289e10a3" /></li>
+<li>
+  <img width="1902" height="808" alt="Screenshot 2025-10-23 212928" src="https://github.com/user-attachments/assets/a9b2c0ba-ad0a-47ca-9ca4-7a2f289e10a3" />
+</li>
 </ol>
 2. K. VIJAYA SAI
 <ol>
 
-<li><img width="1909" height="692" alt="Screenshot 2025-10-23 213349" src="https://github.com/user-attachments/assets/7ddc459e-afb3-4d21-a07d-e442d3398dac" /></li>
+<li>
+  <img width="1909" height="692" alt="Screenshot 2025-10-23 213349" src="https://github.com/user-attachments/assets/7ddc459e-afb3-4d21-a07d-e442d3398dac" />
+</li>
 
-<li><img width="1915" height="797" alt="Screenshot 2025-10-23 213403" src="https://github.com/user-attachments/assets/0a51d721-e14c-4c42-805b-77e89c1883c8" /></li>
+<li>
+  <img width="1915" height="797" alt="Screenshot 2025-10-23 213403" src="https://github.com/user-attachments/assets/0a51d721-e14c-4c42-805b-77e89c1883c8" />
+</li>
 
-<li><img width="1795" height="786" alt="Screenshot 2025-10-23 213416" src="https://github.com/user-attachments/assets/2d9d912e-da35-4b64-bab4-191a47f615c3" /></li>
+<li>
+  <img width="1795" height="786" alt="Screenshot 2025-10-23 213416" src="https://github.com/user-attachments/assets/2d9d912e-da35-4b64-bab4-191a47f615c3" />
+</li>
 
 </ol>
+
 3.T. GURU CHARAN
+<ol>
+  <li>
+
+    <img width="1766" height="492" alt="Screenshot 2025-10-23 214150" src="https://github.com/user-attachments/assets/ab78824b-8b63-4800-ab2b-95e5334d7f22" />
+
+  </li>
+</ol>
+
+4. V. Sooraj
+<ol>
+  <li>
+
+    
+  </li>
+</ol>
+
+
+
+
+
+
+
 <ol>
   
 </ol>
