@@ -118,17 +118,14 @@ Each of the algorithms returns the number of substrings, and then we find the av
 3.T. GURU CHARAN
 <ol>
   <li>
-
-    <img width="1766" height="492" alt="Screenshot 2025-10-23 214150" src="https://github.com/user-attachments/assets/ab78824b-8b63-4800-ab2b-95e5334d7f22" />
-
+    <img width="1766" height="492" alt="Screenshot 2025-10-23 214150" src="https://github.com/user-attachments/assets/dc6e7d1b-20b7-4e83-be5a-87a30c3645f1" />
   </li>
 </ol>
 
 4. V. Sooraj
 <ol>
   <li>
-
-    
+    <img width="1715" height="243" alt="Screenshot 2025-10-23 214524" src="https://github.com/user-attachments/assets/ac974122-e9f2-44cb-a526-1fe0b2716636" />
   </li>
 </ol>
 
