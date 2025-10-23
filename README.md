@@ -1,5 +1,6 @@
 # Plagiarism-Detection-Project
 ## Collaborators should create a new branch and make pull requests in order to maintain the data privacy and security
+## DATABASE THING
 *This is a mini project based on **DSA (BASIC)** which consists of the plagiarism detection tool and displays the results of the plagiarism*
 <u><b>Main Thing About the Project </b> </u>
 <p>First we need to create a database which consists of the information about the students</p>
@@ -37,8 +38,69 @@
 </ol>
 
 PHASE 2: ALGORITHMS TO DETECT PLAGIARISM IN PYTHON 
+## PREPROCESSOR CLASS
+## PHASE 1: TEXT PREPROCESSING
 
-###  ALGORITHMS USED 
+## PREPROCESSOR CLASS
+
+The `Preprocessor` class handles the preprocessing of student submissions:
+- Clean text by removing special characters and normalizing
+- Tokenize text into individual words  
+- Count word frequency using Counter
+- Store results as JSON in the database
+
+## PREPROCESSING WORKFLOW
+
+### Step 1: Initialize Preprocessor
+- Connect to database using Admin credentials
+- Set up submissions folder path
+- Pre-compile regex patterns for performance
+
+### Step 2: Ensure Preprocessed Column
+- Check if `preprocessed_data` column exists in table
+- Create column if it doesn't exist
+- Handle table recreation if needed
+
+### Step 3: Retrieve Student Files
+- Fetch all student records with filenames from database
+- Validate that files exist in submissions directory
+
+### Step 4: Text Processing Pipeline
+For each student file:
+1. Read file content with UTF-8 encoding
+2. Clean text: lowercase, remove non-alpha characters, normalize spaces
+3. Tokenize: split into individual words
+4. Count frequency: using Collections.Counter
+5. Convert to JSON: for database storage
+
+### Step 5: Batch Database Update
+- Store all processed data in batch
+- Update `preprocessed_data` column for each student
+- Handle individual updates if batch fails
+
+### Step 6: Status Reporting
+- Generate comprehensive processing report
+- Show success/error counts
+- Display processing time statistics
+
+### KEY METHODS
+
+- `clean_text()`: Normalizes and cleans raw text input
+- `tokenize()`: Splits clean text into tokens/words
+- `word_freq()`: Counts frequency of each token
+- `freq_to_json()`: Converts Counter to JSON string
+- `ensure_preprocessed_column()`: Manages database schema
+- `preprocess_files()`: Main processing workflow controller
+
+### PERFORMANCE FEATURES
+
+- Pre-compiled regex patterns for faster text cleaning
+- Batch database updates to reduce connection overhead
+- UTF-8 encoding support for international characters
+- Comprehensive error handling and logging
+- Memory-efficient processing of large files
+
+##  ALGORITHMS USED 
 
 This Program integrates and uses three classical algorithms from the world of Data Structures and Algorithms(DSA)
 
@@ -83,7 +145,7 @@ Each of the algorithms returns the number of substrings, and then we find the av
 5. **Step 5:** Print results and optionally save them back to SQL
 
 ## WORK PROGRESS OF EACH CONTRIBUTOR OF THIS PROJECT
-1. GOWTHAN KUMAR C
+1. GOWTHAN KUMAR C :- Total - 23 Commits
    
 <ol>
 <li>
@@ -98,7 +160,7 @@ Each of the algorithms returns the number of substrings, and then we find the av
   <img width="1902" height="808" alt="Screenshot 2025-10-23 212928" src="https://github.com/user-attachments/assets/a9b2c0ba-ad0a-47ca-9ca4-7a2f289e10a3" />
 </li>
 </ol>
-2. K. VIJAYA SAI
+2. K. VIJAYA SAI :- Total - 22 Commits
 <ol>
 
 <li>
@@ -115,26 +177,16 @@ Each of the algorithms returns the number of substrings, and then we find the av
 
 </ol>
 
-3.T. GURU CHARAN
+3.T. GURU CHARAN :- Total - 2 Commits
 <ol>
   <li>
     <img width="1766" height="492" alt="Screenshot 2025-10-23 214150" src="https://github.com/user-attachments/assets/dc6e7d1b-20b7-4e83-be5a-87a30c3645f1" />
   </li>
 </ol>
 
-4. V. Sooraj
+4. V. Sooraj :- Total - 1 Commits
 <ol>
   <li>
     <img width="1715" height="243" alt="Screenshot 2025-10-23 214524" src="https://github.com/user-attachments/assets/ac974122-e9f2-44cb-a526-1fe0b2716636" />
   </li>
-</ol>
-
-
-
-
-
-
-
-<ol>
-  
 </ol>
