@@ -1,4 +1,4 @@
-<img width="1902" height="808" alt="image" src="https://github.com/user-attachments/assets/72722d7c-0c91-4145-82c0-a93717bc2890" /># Plagiarism-Detection-Project
+# Plagiarism-Detection-Project
 ## Collaborators should create a new branch and make pull requests in order to maintain the data privacy and security
 *This is a mini project based on **DSA (BASIC)** which consists of the plagiarism detection tool and displays the results of the plagiarism*
 <u><b>Main Thing About the Project </b> </u>
