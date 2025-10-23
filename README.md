@@ -1,4 +1,4 @@
-# Plagiarism-Detection-Project
+<img width="1902" height="808" alt="image" src="https://github.com/user-attachments/assets/72722d7c-0c91-4145-82c0-a93717bc2890" /># Plagiarism-Detection-Project
 ## Collaborators should create a new branch and make pull requests in order to maintain the data privacy and security
 *This is a mini project based on **DSA (BASIC)** which consists of the plagiarism detection tool and displays the results of the plagiarism*
 <u><b>Main Thing About the Project </b> </u>
@@ -82,5 +82,12 @@ Each of the algorithms returns the number of substrings, and then we find the av
    - Average the results.  
 5. **Step 5:** Print results and optionally save them back to SQL
 
+## WORK PROGRESS OF EACH CONTRIBUTOR OF THIS PROJECT
+1. GOWTHAN KUMAR C
+   
 
+<img width="1915" height="892" alt="Screenshot 2025-10-23 212855" src="https://github.com/user-attachments/assets/19b48547-7a43-44ad-bf75-d63bb0392df4" />
+<img width="1907" height="895" alt="Screenshot 2025-10-23 212917" src="https://github.com/user-attachments/assets/337c0d7c-f44b-4446-93be-d05b03c0b1ed" />
+<img width="1902" height="808" alt="Screenshot 2025-10-23 212928" src="https://github.com/user-attachments/assets/a9b2c0ba-ad0a-47ca-9ca4-7a2f289e10a3" />
+2. K. VIJAYA SAI
 
